@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowedOrigins = ['http://localhost:80', process.env.FE_HOST];
+      const allowedOrigins = ['http://localhost', process.env.FE_HOST];
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
