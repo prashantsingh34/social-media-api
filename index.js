@@ -22,15 +22,21 @@ app.use(express.json());
 //     origin: process.env.FE_HOST,
 //   })
 // );
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       const allowedOrigins = ['http://localhost', process.env.FE_HOST];
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
+//       return callback(new Error('Not allowed by CORS'));
+//     },
+//   })
+// );
+
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = ['http://localhost', process.env.FE_HOST];
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error('Not allowed by CORS'));
-    },
+    origin: '*', // Allow all origins
   })
 );
 
