@@ -48,6 +48,6 @@ app.use("/api/likes", likeRoutes);
 app.use("/api/stories", storyRoutes);
 app.use("/api/relationships", relationshipRoutes);
 
-app.listen(8900, () => {
-  console.log("Server has started on port 8900");
+app.listen(8800, () => {
+  console.log("Server has started on port 8800");
 });
