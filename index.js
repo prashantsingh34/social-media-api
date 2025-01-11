@@ -17,11 +17,23 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json());
+// app.use(
+//   cors({
+//     origin: process.env.FE_HOST,
+//   })
+// );
 app.use(
   cors({
-    origin: process.env.FE_HOST,
+    origin: (origin, callback) => {
+      const allowedOrigins = ['http://localhost:80', process.env.FE_HOST];
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('Not allowed by CORS'));
+    },
   })
 );
+
 app.use(cookieParser());
 
 const storage = multer.diskStorage({
@@ -48,6 +60,6 @@ app.use("/api/likes", likeRoutes);
 app.use("/api/stories", storyRoutes);
 app.use("/api/relationships", relationshipRoutes);
 
-app.listen(8800, () => {
+app.listen(8900, () => {
   console.log("Server has started on port 8800");
 });
